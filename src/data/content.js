@@ -15,7 +15,7 @@ export const content = {
     current: "/images/2a67f901-61fd-4206-8a8d-5505c06755bc.jpeg",
     
     gallery: [
-      { src: "/images/2d886214-df1c-4c3a-a6d5-71ccc94d2bca.jpeg", caption: "The innocent era 😂" },
+      { src: "/2.jpeg", caption: "The innocent era 😂" },
       { src: "/images/52de073b-c64e-4f6e-9019-2f104d0942e6.jpeg", caption: "Peak childhood." },
       { src: "/images/8444d97a-4344-461e-abbd-9408c9441005.jpeg", caption: "Same person. Different vibes." },
       { src: "/images/850b5540-57aa-4f31-b0e1-d46d92aa7e40.jpeg", caption: "Certified chaos." },
