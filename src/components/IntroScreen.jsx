@@ -1,41 +1,53 @@
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import { useEffect, useState } from "react";
-import { content } from "../data/content";
 
 export default function IntroScreen({ onStart }) {
   const [decorations, setDecorations] = useState([]);
 
   useEffect(() => {
-    // Generate background decorations heavily favoring the specific image
+    // Generate background decorations favoring the specific image
     const specificImage = "/images/ac0c543a-d0c7-47a8-b579-7a29a5ce9870.jpeg";
     const emojiTypes = ["🎈", "🎈", "⭐", "✨", "🎉"];
     
-    const items = Array.from({ length: 80 }).map((_, i) => {
-      // 80% chance to be the specific image, 20% emojis for a bit of flavor
-      const isImage = Math.random() > 0.2;
-      
-      // Calculate depth properties (smaller = background, larger = foreground)
-      const depth = Math.random(); // 0 to 1
-      const sizeMultiplier = depth * 0.8 + 0.4; // 0.4 to 1.2
-      const blur = (1 - depth) * 4; // 0px to 4px blur for background items
-      const opacity = depth * 0.5 + 0.3; // 0.3 to 0.8 opacity
-      
-      return {
-        id: i,
-        isImage,
-        value: isImage ? specificImage : emojiTypes[Math.floor(Math.random() * emojiTypes.length)],
-        top: Math.random() * 110 - 5 + "%", // Allow spilling off screen slightly
-        left: Math.random() * 110 - 5 + "%",
-        rotation: Math.random() * 80 - 40,
-        scale: isImage ? sizeMultiplier : Math.random() * 0.8 + 0.5,
-        blur: isImage ? blur : 0,
-        opacity: opacity,
-        delay: Math.random() * 2,
-        duration: Math.random() * 4 + 3,
-        yRange: Math.random() * 20 + 10,
-      };
-    });
+    // Grid-based even scattering
+    const cols = 10;
+    const rows = 8;
+    const items = [];
+    
+    let idCounter = 0;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        // 85% chance to be the specific image
+        const isImage = Math.random() > 0.15;
+        
+        // Calculate cell position (percentage)
+        const cellWidth = 100 / cols;
+        const cellHeight = 100 / rows;
+        
+        // Add random jitter within the cell
+        const jitterX = Math.random() * cellWidth * 0.8;
+        const jitterY = Math.random() * cellHeight * 0.8;
+        
+        const top = (r * cellHeight) + jitterY;
+        const left = (c * cellWidth) + jitterX;
+
+        items.push({
+          id: idCounter++,
+          isImage,
+          value: isImage ? specificImage : emojiTypes[Math.floor(Math.random() * emojiTypes.length)],
+          top: `${top}%`,
+          left: `${left}%`,
+          rotation: Math.random() * 80 - 40,
+          scale: isImage ? Math.random() * 0.4 + 0.8 : Math.random() * 0.5 + 0.7, // 0.8 to 1.2
+          opacity: 1, // fully visible
+          delay: Math.random() * 2,
+          duration: Math.random() * 4 + 3,
+          yRange: Math.random() * 20 + 10,
+        });
+      }
+    }
     setDecorations(items);
   }, []);
 
@@ -73,7 +85,6 @@ export default function IntroScreen({ onStart }) {
               left: item.left,
               scale: item.scale,
               opacity: item.opacity,
-              filter: `blur(${item.blur}px)`,
               rotate: item.rotation
             }}
           >
