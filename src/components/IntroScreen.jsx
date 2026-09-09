@@ -7,24 +7,33 @@ export default function IntroScreen({ onStart }) {
   const [decorations, setDecorations] = useState([]);
 
   useEffect(() => {
-    // Generate background decorations for the intro screen
-    // Mix of emojis and the specific image sticker
-    const items = Array.from({ length: 40 }).map((_, i) => {
-      // 50% chance to be the image sticker, 50% chance to be an emoji
-      const isImage = Math.random() > 0.5;
-      const emojiTypes = ["🎈", "🎈", "👑", "⭐", "🎉"];
+    // Generate background decorations heavily favoring the specific image
+    const specificImage = "/images/ac0c543a-d0c7-47a8-b579-7a29a5ce9870.jpeg";
+    const emojiTypes = ["🎈", "🎈", "⭐", "✨", "🎉"];
+    
+    const items = Array.from({ length: 80 }).map((_, i) => {
+      // 80% chance to be the specific image, 20% emojis for a bit of flavor
+      const isImage = Math.random() > 0.2;
+      
+      // Calculate depth properties (smaller = background, larger = foreground)
+      const depth = Math.random(); // 0 to 1
+      const sizeMultiplier = depth * 0.8 + 0.4; // 0.4 to 1.2
+      const blur = (1 - depth) * 4; // 0px to 4px blur for background items
+      const opacity = depth * 0.5 + 0.3; // 0.3 to 0.8 opacity
       
       return {
         id: i,
         isImage,
-        value: isImage ? content.images.hero : emojiTypes[Math.floor(Math.random() * emojiTypes.length)],
-        top: Math.random() * 100 + "%",
-        left: Math.random() * 100 + "%",
-        rotation: Math.random() * 60 - 30,
-        // Make the image stickers slightly larger than emojis
-        scale: isImage ? Math.random() * 0.4 + 0.6 : Math.random() * 0.8 + 0.5,
+        value: isImage ? specificImage : emojiTypes[Math.floor(Math.random() * emojiTypes.length)],
+        top: Math.random() * 110 - 5 + "%", // Allow spilling off screen slightly
+        left: Math.random() * 110 - 5 + "%",
+        rotation: Math.random() * 80 - 40,
+        scale: isImage ? sizeMultiplier : Math.random() * 0.8 + 0.5,
+        blur: isImage ? blur : 0,
+        opacity: opacity,
         delay: Math.random() * 2,
-        duration: Math.random() * 3 + 2,
+        duration: Math.random() * 4 + 3,
+        yRange: Math.random() * 20 + 10,
       };
     });
     setDecorations(items);
@@ -43,14 +52,14 @@ export default function IntroScreen({ onStart }) {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#fdfbf7] z-50 overflow-hidden">
       {/* Decorative Background Layer */}
-      <div className="absolute inset-0 pointer-events-none opacity-80">
+      <div className="absolute inset-0 pointer-events-none">
         {decorations.map((item) => (
           <motion.div
             key={item.id}
             initial={{ y: 0 }}
             animate={{ 
-              y: ["-15px", "15px", "-15px"],
-              rotate: [item.rotation - 8, item.rotation + 8, item.rotation - 8]
+              y: [`-${item.yRange}px`, `${item.yRange}px`, `-${item.yRange}px`],
+              rotate: [item.rotation - 10, item.rotation + 10, item.rotation - 10]
             }}
             transition={{
               duration: item.duration,
@@ -63,11 +72,13 @@ export default function IntroScreen({ onStart }) {
               top: item.top, 
               left: item.left,
               scale: item.scale,
+              opacity: item.opacity,
+              filter: `blur(${item.blur}px)`,
               rotate: item.rotation
             }}
           >
             {item.isImage ? (
-              <div className="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md bg-white">
+              <div className="w-24 h-24 rounded-full border-[3px] border-white overflow-hidden shadow-xl bg-white transform transition-transform">
                 <img 
                   src={item.value} 
                   alt="Sticker" 
@@ -82,10 +93,10 @@ export default function IntroScreen({ onStart }) {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center space-y-8 relative z-10 bg-white/60 p-12 rounded-3xl backdrop-blur-md border border-white/50 shadow-2xl"
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center space-y-8 relative z-10 bg-white/70 p-12 md:px-16 md:py-14 rounded-3xl backdrop-blur-xl border border-white/60 shadow-2xl"
       >
         <div className="space-y-2">
           <h2 className="text-2xl md:text-4xl font-handwritten text-gray-800 font-bold">Hey... 👀</h2>
