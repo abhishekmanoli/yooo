@@ -34,14 +34,11 @@ function App() {
     <div className="relative min-h-screen text-ink overflow-x-hidden font-sans">
       {/* Fixed Background Image */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-no-repeat opacity-80"
+        className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${content.images.hero})` }}
       />
-      {/* Optional subtle overlay to ensure text readability */}
-      <div className="fixed inset-0 pointer-events-none z-0 bg-white/20 backdrop-blur-[2px]" />
 
       <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-      <StickerLayer />
 
       <main className="relative z-10 w-full max-w-4xl mx-auto px-4 py-12 space-y-32">
         <BirthdayHero content={content} />
