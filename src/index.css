@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Outfit", "Comic Sans MS", system-ui, sans-serif;
+  --font-handwritten: "Comic Sans MS", cursive, sans-serif;
+  
+  --color-paper: #fdfbf7;
+  --color-ink: #2c2c2c;
+  --color-primary: #ff6b6b;
+  --color-secondary: #4ecdc4;
+  --color-accent: #ffe66d;
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans overflow-x-hidden antialiased;
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+@layer utilities {
+  .scrapbook-shadow {
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .sticker-shadow {
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
