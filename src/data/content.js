@@ -10,8 +10,8 @@ export const content = {
   // Since the original images had UUID names, we've mapped them randomly here.
   // Replace these with the actual descriptive filenames later if you rename them.
   images: {
-    hero: "/images/02303a84-08f1-4b7a-8c48-9fb27ce4b5bf.jpeg",
-    childhood: "/images/27c992ad-09ad-4ce2-8ed6-7666b41f8882.jpeg",
+    hero: "/images/27c992ad-09ad-4ce2-8ed6-7666b41f8882.jpeg",
+    childhood: "/images/02303a84-08f1-4b7a-8c48-9fb27ce4b5bf.jpeg",
     current: "/images/2a67f901-61fd-4206-8a8d-5505c06755bc.jpeg",
     
     gallery: [
