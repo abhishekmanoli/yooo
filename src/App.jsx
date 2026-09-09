@@ -35,7 +35,7 @@ function App() {
       {/* Fixed Background Image */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${content.images.hero})` }}
+        style={{ backgroundImage: `url(/1.jpeg)` }}
       />
 
       <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
