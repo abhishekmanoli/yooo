@@ -11,7 +11,7 @@ export const content = {
   // Replace these with the actual descriptive filenames later if you rename them.
   images: {
     hero: "/images/27c992ad-09ad-4ce2-8ed6-7666b41f8882.jpeg",
-    childhood: "/images/02303a84-08f1-4b7a-8c48-9fb27ce4b5bf.jpeg",
+    childhood: "/images/ac0c543a-d0c7-47a8-b579-7a29a5ce9870.jpeg",
     current: "/2.jpeg",
     
     gallery: [
