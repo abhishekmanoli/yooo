@@ -32,6 +32,13 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-paper text-ink overflow-x-hidden font-sans">
+      {/* Animated Background Blobs */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-60">
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 md:w-[600px] md:h-[600px] bg-pink-300 rounded-full mix-blend-multiply filter blur-[80px] md:blur-[120px] animate-blob"></div>
+        <div className="absolute top-[20%] right-[-10%] w-80 h-80 md:w-[500px] md:h-[500px] bg-yellow-300 rounded-full mix-blend-multiply filter blur-[80px] md:blur-[120px] animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-[-10%] left-[20%] w-96 h-96 md:w-[600px] md:h-[600px] bg-teal-300 rounded-full mix-blend-multiply filter blur-[80px] md:blur-[120px] animate-blob animation-delay-4000"></div>
+      </div>
+
       <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       <StickerLayer />
 
