@@ -16,7 +16,7 @@ export const content = {
     
     gallery: [
       { src: "/2.jpeg", caption: "The innocent era 😂" },
-      { src: "/images/52de073b-c64e-4f6e-9019-2f104d0942e6.jpeg", caption: "Peak childhood." },
+      { src: "/3.jpeg", caption: "Peak childhood." },
       { src: "/images/8444d97a-4344-461e-abbd-9408c9441005.jpeg", caption: "Same person. Different vibes." },
       { src: "/images/850b5540-57aa-4f31-b0e1-d46d92aa7e40.jpeg", caption: "Certified chaos." },
       { src: "/images/879aeea3-675f-468c-ac95-a1d66f9d1c8e.jpeg", caption: "How did we get here? 😭" },
